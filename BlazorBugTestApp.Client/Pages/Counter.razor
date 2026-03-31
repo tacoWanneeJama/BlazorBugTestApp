@@ -9,7 +9,16 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<Card>
+    <Field>
+        <FieldLabel>Datum</FieldLabel>
+        <DatePicker @bind-Value="selectedDates" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" ShowClearButton ShowTodayButton ShowWeekNumbers />
+   
+    </Field>
+</Card>
+
 @code {
+    IReadOnlyList<DateTime?> selectedDates;
     private int currentCount = 0;
 
     private void IncrementCount()
