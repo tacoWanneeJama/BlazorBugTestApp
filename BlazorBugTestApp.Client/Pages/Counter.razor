@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@page "/"
 @rendermode InteractiveWebAssembly
 
 <PageTitle>Counter</PageTitle>
@@ -10,19 +11,41 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <Card>
-    <Field>
-        <FieldLabel>Datum</FieldLabel>
-        <DatePicker @bind-Value="selectedDates" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" ShowClearButton ShowTodayButton ShowWeekNumbers />
-   
+    <Field Horizontal>
+        <FieldLabel ColumnSize="ColumnSize.Is2">DatePicker 1</FieldLabel>
+        <FieldBody ColumnSize="ColumnSize.Is10">
+            <DatePicker @bind-Value="selectedDates1" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" ShowClearButton ShowTodayButton ShowWeekNumbers />
+        </FieldBody>
+    </Field>
+    <Field Horizontal>
+        <FieldLabel ColumnSize="ColumnSize.Is2">DatePicker 2</FieldLabel>
+        <FieldBody ColumnSize="ColumnSize.Is10">
+            <DatePicker TValue="DateOnly[]"
+                        Value="@_selectedDates2"
+                        ValueChanged="OnSelectedDatesChanges2"
+                        InputMode="DateInputMode.Date"
+                        SelectionMode="DateInputSelectionMode.Range"
+                        Max="@(DateTime.Now)"
+                        ShowClearButton
+                        ShowTodayButton
+                        ShowWeekNumbers />
+        </FieldBody>
     </Field>
 </Card>
 
 @code {
-    IReadOnlyList<DateTime?> selectedDates;
+    IReadOnlyList<DateTime?> selectedDates1;
+
+    private DateOnly[]? _selectedDates2;
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private async Task OnSelectedDatesChanges2(DateOnly[]? newDates)
+    {
+        _selectedDates2 = newDates;
     }
 }
