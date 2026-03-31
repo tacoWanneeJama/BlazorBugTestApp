@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BlazorBugTestApp.Client/BlazorBugTestApp.Client.csproj" />
+  <Project Path="BlazorBugTestApp/BlazorBugTestApp.csproj" />
+</Solution>
