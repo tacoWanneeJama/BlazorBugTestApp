@@ -9,9 +9,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorBugTestApp.Client\BlazorBugTestApp.Client.csproj" />
-    <PackageReference Include="Blazorise.Bootstrap5" Version="2.0.3" />
-    <PackageReference Include="Blazorise.Components" Version="2.0.3" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="2.0.3" />
+    <PackageReference Include="Blazorise.Bootstrap5" Version="2.0.4" />
+    <PackageReference Include="Blazorise.Components" Version="2.0.4" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.5" />
   </ItemGroup>
 

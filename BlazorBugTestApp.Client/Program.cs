@@ -9,6 +9,7 @@ builder.Services
     .AddBlazorise(options =>
     {
         options.Immediate = true;
+        options.ProductToken = "<your-product-token>";
     })
     .AddBootstrap5Providers()
     .AddFontAwesomeIcons();
