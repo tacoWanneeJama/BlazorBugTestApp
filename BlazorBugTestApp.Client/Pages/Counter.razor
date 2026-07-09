@@ -9,7 +9,7 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
+<Button Color="Color.Primary" Clicked="@(() => _modalRef.Show())">Open Modal</Button>
 <Card>
     <Field Horizontal>
         <FieldLabel ColumnSize="ColumnSize.Is2">DatePicker 1</FieldLabel>
@@ -32,9 +32,32 @@
         </FieldBody>
     </Field>
 </Card>
+<Modal @ref="_modalRef" Size="ModalSize.Small" >
+    <ModalContent>
+
+    <ModalHeader>
+        <Heading Size="HeadingSize.Is5">Modal Header</Heading>
+        </ModalHeader>
+        <ModalBody>
+        <DatePicker TValue="DateOnly[]"
+                    Value="@_selectedDates2"
+                    ValueChanged="OnSelectedDatesChanges2"
+                    InputMode="DateInputMode.Date"
+                    SelectionMode="DateInputSelectionMode.Range"
+                    Max="@(DateTime.Now)"
+                    ShowClearButton
+                    ShowTodayButton
+                    ShowWeekNumbers />
+
+        </ModalBody>
+    </ModalContent>
+</Modal>
+
 
 @code {
     IReadOnlyList<DateTime?> selectedDates1;
+
+    Modal _modalRef = default!;
 
     private DateOnly[]? _selectedDates2;
     private int currentCount = 0;
