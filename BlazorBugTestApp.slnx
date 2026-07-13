@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="BlazorBugTestApp.Client/BlazorBugTestApp.Client.csproj" />
   <Project Path="BlazorBugTestApp/BlazorBugTestApp.csproj" />
+  <Project Path="BlazorBugUnittest/BlazorBugUnittest.csproj" Id="73f401ca-d4c1-43fc-954c-4c89bcd4584c" />
 </Solution>

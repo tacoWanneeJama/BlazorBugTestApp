@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/BlazorBugUnittest/Snapshots/Test1.TestMethod1/*.received.txt

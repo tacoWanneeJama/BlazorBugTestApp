@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableMSTestRunner>true</EnableMSTestRunner>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TUnit" Version="1.59.0" />
+    <PackageReference Include="Verify.DiffPlex" Version="3.3.0" />
+    <PackageReference Include="Verify.TUnit" Version="31.24.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Snapshots\Test1.TestMethod1\" />
+  </ItemGroup>
+
+</Project>
