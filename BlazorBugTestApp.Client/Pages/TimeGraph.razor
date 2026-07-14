@@ -1,0 +1,24 @@
+@rendermode InteractiveWebAssembly
+
+<PageTitle>TimeGraph</PageTitle>
+
+<h1>TimeGraph</h1>
+
+<Row>
+    <Column ColumnSize="ColumnSize.Is6">
+        <SvgScatterChart Items="GetDataWithLocalTime()">
+            <SvgChartTitle Title="@("LocalTime Graph Test")" Subtitle="@("A Test TimeGraph to see what effect ToLocalTime has on the SvgChartTimeAxis of Blazorise")" />
+            <SvgScatterSeries Name="" YValue="@(item => item.Value)" MarkerRadius="1" Color="Color.Primary" />
+            <SvgChartTimeAxis TimeValue="@(item => item.Time)"
+                              Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Minute" />
+        </SvgScatterChart>
+    </Column>
+    <Column ColumnSize="ColumnSize.Is6">
+        <SvgScatterChart Items="_data">
+            <SvgChartTitle Title="@("Time Graph Test")" Subtitle="@("A Test Time Graph where the time has not been altered by ToLocalTime to see the difference with the other graph")" />
+            <SvgScatterSeries Name="" YValue="@(item => item.Value)" MarkerRadius="1" Color="Color.Primary" />
+            <SvgChartTimeAxis TimeValue="@(item => item.Time)"
+                              Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Minute" />
+        </SvgScatterChart>
+    </Column>
+</Row>
