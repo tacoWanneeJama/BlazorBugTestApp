@@ -25,7 +25,10 @@
 </Row>
 <Row>
     <Column ColumnSize="ColumnSize.Is6">
-
+        <SvgChart TItem="DateTime" Items="_listTime">
+            <SvgChartTimeAxis Id="time" TimeValue="@(item => item)" Culture="en-US" Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Minute" />
+            <SvgScatterSeries CategoryAxisId="time" Name="basic"  Value="@(item => GetValue(item))" MarkerRadius="1" Color="Color.Primary" />
+        </SvgChart>
     </Column>
 </Row>
 
