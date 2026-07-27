@@ -4,7 +4,6 @@ using System.Dynamic;
 namespace BlazorBugTestApp.Client.Pages
 {
     [Route("timeGraph")]
-    [Route("/")]
     public partial class TimeGraph
     {
         private List<(int Value, DateTime Time)> _data = new()
@@ -44,10 +43,10 @@ namespace BlazorBugTestApp.Client.Pages
             DateTime.Parse("08:04:22"),
             DateTime.Parse("08:22:45")
         };
-        private List<double> _listValues = new()
+        private List<double?> _listValues1 = new()
         {
             22.55,
-            33.45,
+            null,
             19.10,
             18.00,
             8.30,
@@ -59,7 +58,26 @@ namespace BlazorBugTestApp.Client.Pages
             9.35,
             7.85,
             40.65,
-            39.95,
+            null,
+            9.95
+        };
+
+        private List<double?> _listValues2 = new()
+        {
+            26.55,
+            37.45,
+            13.10,
+            19.00,
+            null,
+            null,
+            22.25,
+            18.75,
+            32.20,
+            null,
+            20.35,
+            14.85,
+            null,
+            12.95,
             9.95
         };
 
@@ -69,7 +87,8 @@ namespace BlazorBugTestApp.Client.Pages
             base.OnInitialized();
         }
 
-        private List<(DateTime, double)> _listCombined = new();
+        private List<(DateTime, double?)> _listCombined1 = new();
+        private List<(DateTime, double?)> _listCombined2 = new();
 
         public void ReadTimes()
         {
@@ -79,26 +98,41 @@ namespace BlazorBugTestApp.Client.Pages
             }
         }
 
-        public List<(DateTime, double)> CombineList()
+        public void CombineList()
         {
-            _listCombined.Clear();
+            _listCombined1.Clear();
+            _listCombined2.Clear();
             for (int i = 0; i < _listTime.Count(); i++)
             {
-                _listCombined.Add((_listTime[i], _listValues[i]));
+                _listCombined1.Add((_listTime[i], _listValues1[i]));
+                _listCombined2.Add((_listTime[i], _listValues2[i]));
             }
-            return _listCombined;
         }
 
-        public double GetValue(DateTime time)
+        public double? GetValue(int graphNum, DateTime time)
         {
-            for (int i = 0; i < _listCombined.Count; i++)
+            switch (graphNum)
             {
-                if (_listCombined[i].Item1 == time)
-                {
-                    return _listCombined[i].Item2;
-                }
+                case 1:
+                    for (int i = 0; i < _listCombined1.Count; i++)
+                    {
+                        if (_listCombined1[i].Item1 == time)
+                        {
+                            return _listCombined1[i].Item2;
+                        }
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < _listCombined2.Count; i++)
+                    {
+                        if (_listCombined2[i].Item1 == time)
+                        {
+                            return _listCombined2[i].Item2;
+                        }
+                    }
+                    break;
             }
-            return 0.0;
+            return null;
         }
 
         public List<(int Value, DateTime Time)> GetDataWithLocalTime()

@@ -26,8 +26,9 @@
 <Row>
     <Column ColumnSize="ColumnSize.Is6">
         <SvgChart TItem="DateTime" Items="_listTime">
-            <SvgChartTimeAxis Id="time" TimeValue="@(item => item)" Culture="en-US" Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Minute" />
-            <SvgScatterSeries CategoryAxisId="time" Name="basic"  Value="@(item => GetValue(item))" MarkerRadius="1" Color="Color.Primary" />
+            <SvgChartTimeAxis Id="time"  TimeValue="@(item => item)" Culture="nl-NL" TimeZone="TimeZoneInfo.Local" Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Minute" />
+            <SvgScatterSeries CategoryAxisId="time" Name="basic"  Value="@(item => GetValue(1, item))" MarkerRadius="1" Color="Color.Primary" />
+            <SvgScatterSeries CategoryAxisId="time" Name="basic" Value="@(item => GetValue(2, item))" MarkerRadius="1" Color="Color.Warning" />
         </SvgChart>
     </Column>
 </Row>

@@ -1,0 +1,32 @@
+﻿@rendermode InteractiveWebAssembly
+
+<PageTitle>StressTestGraph</PageTitle>
+
+<h1>StressTestGraph</h1>
+
+<Row>
+    @if (_data != null)
+    {
+        <Check TValue="bool"
+                Inline
+                Style="display:inline-block; margin-right:5px;"
+                @bind-Value="series1Hidden" />
+        <Check TValue="bool"
+               Inline
+               Style="display:inline-block; margin-right:5px;"
+               @bind-Value="series2Hidden" />
+    }
+</Row>
+<Row>
+    <Column ColumnSize="ColumnSize.Is6">
+        <SvgChart TItem="(DateTime time, double value, double value2)" Items="_data">
+            <SvgChartTimeAxis Id="time" TimeValue="@(item => item.time)" Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Hour" />
+            <SvgScatterSeries Hidden="series1Hidden" CategoryAxisId="time" Name="dots1" Value="@(item => item.value)" MarkerRadius="1" Color="Color.Primary" />
+            <SvgScatterSeries Hidden="series2Hidden" CategoryAxisId="time" Name="dots2" Value="@(item => item.value2)" MarkerRadius="1" Color="Color.Danger" />
+        </SvgChart>
+    </Column>
+</Row>
+
+@code {
+
+}

@@ -10,11 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap5" Version="2.2.1" />
-    <PackageReference Include="Blazorise.Charts.Svg" Version="2.2.1" />
-    <PackageReference Include="Blazorise.Components" Version="2.2.1" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="2.2.1" />
-    <PackageReference Include="Blazorise.Sidebar" Version="2.2.1" />
+    <PackageReference Include="Blazorise.Bootstrap5" Version="2.2.2" />
+    <PackageReference Include="Blazorise.Charts.Svg" Version="2.2.2" />
+    <PackageReference Include="Blazorise.Components" Version="2.2.2" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="2.2.2" />
+    <PackageReference Include="Blazorise.Sidebar" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.9" />
   </ItemGroup>
 
