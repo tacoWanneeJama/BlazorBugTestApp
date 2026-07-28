@@ -15,7 +15,7 @@ namespace BlazorBugTestApp.Client.Pages
 
         private Random _rand = new Random();
         private Dictionary<int, List<(DateTime Time, double Value)>> _avg = new();
-        
+
 
         public StressTestGraph()
         {
@@ -26,9 +26,9 @@ namespace BlazorBugTestApp.Client.Pages
             var total2 = rand2;
             for (int i = 0; i < 800; i++)
             {
-                if(i == 0)
+                if (i == 0)
                 {
-                    _data.Add((date, rand1, rand2, total / (i+1), total2 / (i + 1)));
+                    _data.Add((date, rand1, rand2, total / (i + 1), total2 / (i + 1)));
                 }
                 else
                 {
@@ -41,21 +41,17 @@ namespace BlazorBugTestApp.Client.Pages
                 date = date.AddMinutes(1);
             }
         }
-
-        public void StatusHasChanged1(bool status)
+        public void OnTypeCheckedChanged(int serie, bool isChecked)
         {
-            series1Hidden = status;
+            if (serie == 1)
+            {
+                series1Hidden = isChecked;
+            }
+            else if (serie == 2)
+            {
+                series2Hidden = isChecked;
+            }
             StateHasChanged();
         }
-
-        public void SatusHasChanged2(bool status)
-        {
-            series2Hidden = status;
-            StateHasChanged();
-        }
-
-        
-
-
     }
 }
