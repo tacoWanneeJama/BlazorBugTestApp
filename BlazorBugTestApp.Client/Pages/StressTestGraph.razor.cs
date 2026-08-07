@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Components;
 namespace BlazorBugTestApp.Client.Pages
 {
     [Route("stressTestGraph")]
-    [Route("/")]
 
     public partial class StressTestGraph
     {
