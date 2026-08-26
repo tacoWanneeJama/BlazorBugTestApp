@@ -16,9 +16,20 @@
     <Column ColumnSize="ColumnSize.Is6">
         <SvgScatterChart Items="_data">
             <SvgChartTitle Title="@("Time Graph Test")" Subtitle="@("A Test Time Graph where the time has not been altered by ToLocalTime to see the difference with the other graph")" />
-            <SvgScatterSeries Name="" YValue="@(item => item.Value)" MarkerRadius="1" Color="Color.Primary" />
+            <SvgScatterSeries Name="basic" Value="@(item => item.Value)" MarkerRadius="1" Color="Color.Primary" />
+            <SvgScatterSeries Name="offset" Value="@(item => item.Value+3)" MarkerRadius="1" Color="Color.Warning" />
             <SvgChartTimeAxis TimeValue="@(item => item.Time)"
                               Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Minute" />
         </SvgScatterChart>
     </Column>
 </Row>
+<Row>
+    <Column ColumnSize="ColumnSize.Is6">
+        <SvgChart TItem="DateTime" Items="_listTime">
+            <SvgChartTimeAxis Id="time"  TimeValue="@(item => item)" Culture="nl-NL" TimeZone="TimeZoneInfo.Local" Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Minute" />
+            <SvgScatterSeries CategoryAxisId="time" Name="basic"  Value="@(item => GetValue(1, item))" MarkerRadius="1" Color="Color.Primary" />
+            <SvgScatterSeries CategoryAxisId="time" Name="basic" Value="@(item => GetValue(2, item))" MarkerRadius="1" Color="Color.Warning" />
+        </SvgChart>
+    </Column>
+</Row>
+
