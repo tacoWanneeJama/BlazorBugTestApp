@@ -1,4 +1,5 @@
 ﻿using Blazorise;
+using Blazorise.Charts.Svg;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorBugTestApp.Client.Pages
@@ -7,14 +8,14 @@ namespace BlazorBugTestApp.Client.Pages
 
     public partial class StressTestGraph
     {
+        private SvgChart<(DateTime Time, double Value, double Value2, double Avg, double Avg2)> _chart1 = new();
+        private SvgChart<(DateTime Time, double Value, double Value2, double Avg, double Avg2)> _chart2 = new();
         private List<(DateTime Time, double Value, double Value2, double Avg, double Avg2)> _data = new();
-
-        private bool series1Hidden = false;
-        private bool series2Hidden = false;
-
         private Random _rand = new Random();
         private Dictionary<int, List<(DateTime Time, double Value)>> _avg = new();
 
+        private bool _showLine1 = false;
+        private bool _showLine2 = false;
 
         public StressTestGraph()
         {
@@ -39,18 +40,29 @@ namespace BlazorBugTestApp.Client.Pages
                 }
                 date = date.AddMinutes(1);
             }
+            _showLine1 = true;
+            _showLine2 = true;
         }
-        public void OnTypeCheckedChanged(int serie, bool isChecked)
+
+        public void UpdateCharts()
         {
-            if (serie == 1)
-            {
-                series1Hidden = isChecked;
-            }
-            else if (serie == 2)
-            {
-                series2Hidden = isChecked;
-            }
+            _chart1.Update();
+            _chart2.Update();
             StateHasChanged();
+        }
+
+        private bool ShowLineChanged(int v, object nv)
+        {
+            if(v == 1)
+            {
+                _showLine1 = (bool)nv;
+            }
+            else if(v == 2)
+            {
+                _showLine2 = (bool)nv;
+            }
+            UpdateCharts();
+            return _showLine1 && _showLine2;
         }
     }
 }

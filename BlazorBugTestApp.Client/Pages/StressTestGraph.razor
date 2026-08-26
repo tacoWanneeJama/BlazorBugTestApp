@@ -10,42 +10,40 @@
         <Check TValue="bool"
                Inline
                Style="display:inline-block; margin-right:5px;"
-               Value="series1Hidden"
-               ValueChanged="@((nv) => OnTypeCheckedChanged(1, nv))"> 
+               Value="@_showLine1"
+               ValueChanged="@((nv) => ShowLineChanged(1,nv))"> 
             <Span>line1</Span>
         </Check>
         <Check TValue="bool"
                Inline
                Style="display:inline-block; margin-right:5px;"
-               Value="series2Hidden"
-               ValueChanged="@((nv) => OnTypeCheckedChanged(2, nv))">
+               Value="@_showLine2"
+               ValueChanged="@((nv) => ShowLineChanged(2,nv))">
                <Span>line2</Span>
            </Check>
     }
 </Row>
+
 <Row>
-    <Column ColumnSize="ColumnSize.Is6">
-        <SvgChart TItem="(DateTime time, double value, double value2, double avg, double avg2)" Items="_data">
+    <Column ColumnSize="ColumnSize.Is7">
+        <SvgChart @ref="_chart1" TItem="(DateTime time, double value, double value2, double avg, double avg2)" Items="_data">
             <SvgChartTimeAxis Id="time" TimeValue="@(item => item.time)" Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Hour" />
-            <SvgScatterSeries Hidden="series1Hidden" CategoryAxisId="time" Name="dots1" Value="@(item => item.value)" MarkerRadius="0.8" Color="Color.Primary" />
-            <SvgScatterSeries Hidden="series2Hidden" CategoryAxisId="time" Name="dots2" Value="@(item => item.value2)" MarkerRadius="0.8" Color="Color.Danger" />
-            <SvgLineSeries Hidden="series1Hidden" MarkerRadius="0" StrokeWidth="2" CategoryAxisId="time" Name="line1" Value="@(item => item.avg)" Color="Color.Primary" />
-            <SvgLineSeries Hidden="series2Hidden" MarkerRadius="0" StrokeWidth="2" CategoryAxisId="time" Name="line2" Value="@(item => item.avg2)" Color="Color.Danger" />
+            <SvgScatterSeries Hidden="@(!_showLine1)" CategoryAxisId="time" Name="dots1" Value="@(item => item.value)" MarkerRadius="0.8" Color="Color.Primary" />
+            <SvgScatterSeries Hidden="@(!_showLine2)" CategoryAxisId="time" Name="dots2" Value="@(item => item.value2)" MarkerRadius="0.8" Color="Color.Danger" />
+            <SvgLineSeries MarkerRadius="0" Hidden="@(!_showLine1)" StrokeWidth="2" CategoryAxisId="time" Name="line1" Value="@(item => item.avg)" Color="Color.Primary" />
+            <SvgLineSeries MarkerRadius="0" Hidden="@(!_showLine2)" StrokeWidth="2" CategoryAxisId="time" Name="line2" Value="@(item => item.avg2)" Color="Color.Danger" />
+            <SvgChartLegend Position="SvgChartLegendPosition.Bottom"  />
         </SvgChart>
     </Column>
 </Row>
 <Row>
-    <Column ColumnSize="ColumnSize.Is6">
-        <SvgChart TItem="(DateTime time, double value, double value2, double avg, double avg2)" Items="_data">
+    <Column ColumnSize="ColumnSize.Is7">
+        <SvgChart @ref="_chart2" TItem="(DateTime time, double value, double value2, double avg, double avg2)" Items="_data">
             <SvgChartTimeAxis Id="time" TimeValue="@(item => item.time)" Scale="SvgChartTimeScale.Continuous" Unit="SvgChartTimeUnit.Hour" />
-            <SvgScatterSeries Hidden="series1Hidden" CategoryAxisId="time" Name="dots1" Value="@(item => item.value)" MarkerRadius="0.8" Color="Color.Primary" />
-            <SvgScatterSeries Hidden="series2Hidden" CategoryAxisId="time" Name="dots2" Value="@(item => item.value2)" MarkerRadius="0.8" Color="Color.Danger" />
-            <SvgLineSeries Hidden="series1Hidden" MarkerRadius="0" StrokeWidth="2" CategoryAxisId="time" Name="line1" Value="@(item => item.avg)" Color="Color.Primary" />
-            <SvgLineSeries Hidden="series2Hidden" MarkerRadius="0" StrokeWidth="2" CategoryAxisId="time" Name="line2" Value="@(item => item.avg2)" Color="Color.Danger" />
+            <SvgScatterSeries CategoryAxisId="time" Hidden="@(!_showLine1)" Name="dots1" Value="@(item => item.value)" MarkerRadius="0.8" Color="Color.Primary" />
+            <SvgScatterSeries CategoryAxisId="time" Hidden="@(!_showLine2)" Name="dots2" Value="@(item => item.value2)" MarkerRadius="0.8" Color="Color.Danger" />
+            <SvgLineSeries MarkerRadius="0" Hidden="@(!_showLine1)" StrokeWidth="2" CategoryAxisId="time" Name="line1" Value="@(item => item.avg)" Color="Color.Primary" />
+            <SvgLineSeries MarkerRadius="0" Hidden="@(!_showLine2)" StrokeWidth="2" CategoryAxisId="time" Name="line2" Value="@(item => item.avg2)" Color="Color.Danger" />
         </SvgChart>
     </Column>
-</Row>
-
-@code {
-
-}
+    </Row>
