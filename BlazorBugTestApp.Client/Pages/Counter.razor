@@ -30,6 +30,12 @@
                         ShowWeekNumbers />
         </FieldBody>
     </Field>
+    <Progress max="65">
+        <ProgressBar Value="15" />
+        <ProgressBar Color="Color.Success" Value="30" />
+        <ProgressBar Color="@(new Color("#DBB5E6"))" Value="20" />
+    </Progress>
+
 </Card>
 <Modal @ref="_modalRef" Size="ModalSize.Small" >
     <ModalContent>
